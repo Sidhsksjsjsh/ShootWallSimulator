@@ -46,7 +46,7 @@ for _,v in pairs(table:GetChildren()) do
   end
 end
 
-CreateTable(workspace.Eggs, Egg)
+-- CreateTable(workspace.Eggs, Egg)
 
 function pet(name,bl_1,bl_2,bl_3,bl_4)
 local args = {
