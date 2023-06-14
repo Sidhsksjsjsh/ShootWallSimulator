@@ -75,6 +75,10 @@ game:GetService("ReplicatedStorage").PetSystem.Remotes.HatchPet:FireServer(unpac
 game:GetService("ReplicatedStorage").PetSystem.Remotes.EquipBest:FireServer()
 end
 
+function teleporter(posit)
+    client.Character.HumanoidRootPart.CFrame = CFrame.new(posit.CFrame)
+end
+
 local TargetLvl = "Lvl2Target"
 local TargetType = "Target2"
 
@@ -108,7 +112,7 @@ function Trainner(zoneselected, partchanged)
     end
     if zoneselected == "Zone8" then
         TargetLvl = "Lvl8Target"
-        TargetType = "Target8"
+        TargetType = "Target7"
     end
     if zoneselected == "Zone9" then
         TargetLvl = "Lvl9Target"
@@ -148,7 +152,7 @@ function Trainner(zoneselected, partchanged)
     end
     if zoneselected == "Zone18" then
         TargetLvl = "Lvl18Target"
-        TargetType = "Target18"
+        TargetType = "Target16"
     end
     if zoneselected == "Zone19" then
         TargetLvl = "Lvl19Target"
@@ -208,7 +212,7 @@ Callback = function(Value)
              [2] = {
                  ["p"] = Vector3.new(0,0,0),
                  ["pid"] = 1,
-                 ["part"] = workspace.Walls[_G.ReturnZones][ReturnWalls[math.random(1, #ReturnWalls)]],
+                 ["part"] = workspace.Walls[_G.ReturnZones][ReturnWalls[math.random(12, #ReturnWalls)]],
                  ["t"] = 0.6423321066551326,
                  ["maxDist"] = 48.076534271240234,
                  ["m"] = Enum.Material.Plastic,
@@ -219,6 +223,7 @@ Callback = function(Value)
        }
 
       game:GetService("ReplicatedStorage").WeaponSystem.Remotes.WeaponHit:FireServer(unpack(args))
+      CreateTable(workspace.Walls[_G.ReturnZones], ReturnWalls)
     end
 end
 })
@@ -231,6 +236,18 @@ Callback = function(Value)
       while wait() do
         if _G.Train == false then break end
         Trainner(_G.ReturnZones)
+    end
+end
+})
+
+T1:AddToggle({
+Name = "Auto Win",
+Default = false,
+Callback = function(Value)
+      _G.TWin = Value
+      while wait() do
+        if _G.TWin == false then break end
+        teleporter(workspace.Wins[_G.ReturnZones].Container)
     end
 end
 })
