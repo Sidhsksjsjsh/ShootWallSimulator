@@ -40,13 +40,13 @@ for _,v in pairs(table:GetChildren()) do
     table.insert(TableZones, v.Name)
   end
 --]]
-function CreateTable(table, localTable)
-for _,v in pairs(table:GetChildren()) do
+function CreateTable(tablefunc, localTable)
+for _,v in pairs(tablefunc:GetChildren()) do
     table.insert(localTable, v.Name)
   end
 end
 
--- CreateTable(workspace.Eggs, Egg)
+CreateTable(workspace.Eggs, Egg)
 
 function pet(name,bl_1,bl_2,bl_3,bl_4)
 local args = {
@@ -100,7 +100,7 @@ Callback = function(Value)
              [2] = {
                  ["p"] = Vector3.new(0,0,0),
                  ["pid"] = 1,
-                 ["part"] = workspace.Walls[_G.ReturnZones][ReturnWalls],
+                 ["part"] = workspace.Walls[_G.ReturnZones][ReturnWalls[math.random(1, #ReturnWalls)]],
                  ["t"] = 0.6423321066551326,
                  ["maxDist"] = 48.076534271240234,
                  ["m"] = Enum.Material.Plastic,
