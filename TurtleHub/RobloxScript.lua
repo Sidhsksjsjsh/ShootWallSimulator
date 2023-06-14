@@ -5,9 +5,19 @@
     last update: 14/06/2023 (12:32 PM)
 ]]
 
+local client = game.Players.LocalPlayer
 local OrionLib = loadstring(game:HttpGet("https://pastebin.com/raw/NMEHkVTb"))()
 
 local Window = OrionLib:MakeWindow({Name = "VIP Turtle Hub V3", HidePremium = false, SaveConfig = true, ConfigFolder = "TurtleFi"})
+
+function showinfo(av,hv)
+OrionLib:MakeNotification({
+        Name = av,
+        Content = hv,
+        Image = "rbxassetid://0",
+        Time = 5
+    })
+end
 
 local T1 = Window:MakeTab({
 Name = "Main",
@@ -65,7 +75,105 @@ game:GetService("ReplicatedStorage").PetSystem.Remotes.HatchPet:FireServer(unpac
 game:GetService("ReplicatedStorage").PetSystem.Remotes.EquipBest:FireServer()
 end
 
-local client = game.Players.LocalPlayer
+local TargetLvl = "Lvl2Target"
+local TargetType = "Target2"
+
+function Trainner(zoneselected, partchanged)
+    if zoneselected == "Zone1" then
+        showinfo("Oops:)","try another zone! :)")
+    end
+    if zoneselected == "Zone2" then
+        TargetLvl = "Lvl2Target"
+        TargetType = "Target2"
+    end
+    if zoneselected == "Zone3" then
+        TargetLvl = "Lvl3Target"
+        TargetType = "Target3"
+    end
+    if zoneselected == "Zone4" then
+        TargetLvl = "Lvl4Target"
+        TargetType = "Target4"
+    end
+    if zoneselected == "Zone5" then
+        TargetLvl = "Lvl5Target"
+        TargetType = "Target5"
+    end
+    if zoneselected == "Zone6" then
+        TargetLvl = "Lvl6Target"
+        TargetType = "Target6"
+    end
+    if zoneselected == "Zone7" then
+        TargetLvl = "Lvl7Target"
+        TargetType = "Target7"
+    end
+    if zoneselected == "Zone8" then
+        TargetLvl = "Lvl8Target"
+        TargetType = "Target8"
+    end
+    if zoneselected == "Zone9" then
+        TargetLvl = "Lvl9Target"
+        TargetType = "Target9"
+    end
+    if zoneselected == "Zone10" then
+        TargetLvl = "Lvl10Target"
+        TargetType = "Target10"
+    end
+    if zoneselected == "Zone11" then
+        TargetLvl = "Lvl11Target"
+        TargetType = "Target11"
+    end
+    if zoneselected == "Zone12" then
+        TargetLvl = "Lvl12Target"
+        TargetType = "Target12"
+    end
+    if zoneselected == "Zone13" then
+        TargetLvl = "Lvl13Target"
+        TargetType = "Target13"
+    end
+    if zoneselected == "Zone14" then
+        TargetLvl = "Lvl14Target"
+        TargetType = "Target14"
+    end
+    if zoneselected == "Zone15" then
+        TargetLvl = "Lvl15Target"
+        TargetType = "Target15"
+    end
+    if zoneselected == "Zone16" then
+        TargetLvl = "Lvl16Target"
+        TargetType = "Target16"
+    end
+    if zoneselected == "Zone17" then
+        TargetLvl = "Lvl17Target"
+        TargetType = "Target17"
+    end
+    if zoneselected == "Zone18" then
+        TargetLvl = "Lvl18Target"
+        TargetType = "Target18"
+    end
+    if zoneselected == "Zone19" then
+        TargetLvl = "Lvl19Target"
+        TargetType = "Target17"
+    end
+    
+local args = {
+    [1] = client.Character:FindFirstChild(getEquippedWeapon(client)),
+    [2] = {
+        ["p"] = Vector3.new(0,0,0),
+        ["pid"] = 1,
+        ["part"] = workspace.Targets["Targets" .. tostring(zoneselected)][TargetLvl][TargetType]:FindFirstChild("Meshes/Target_Cylinder (1)"),
+        ["t"] = 0.8021890526669664,
+        ["maxDist"] = 30.89893341064453,
+        ["m"] = Enum.Material.Plastic,
+        ["sid"] = 15,
+        ["d"] = 30.975276947021484,
+        ["n"] = Vector3.new(0,0,0)
+    }
+}
+
+game:GetService("ReplicatedStorage").WeaponSystem.Remotes.WeaponHit:FireServer(unpack(args))
+end
+
+-- local client = game.Players.LocalPlayer
 
 function getEquippedWeapon(player)
         local char = player.Character
@@ -122,22 +230,7 @@ Callback = function(Value)
       _G.Train = Value
       while wait() do
         if _G.Train == false then break end
-        local args = {
-             [1] = client.Character:FindFirstChild(getEquippedWeapon(client)),
-             [2] = {
-                 ["p"] = Vector3.new(0,0,0),
-                 ["pid"] = 1,
-                 ["part"] = workspace.Targets.TargetsZone1.NoobTarget2.Target1:FindFirstChild("Meshes/Target_Cylinder.001 (1)"),
-                 ["d"] = 35.75101089477539,
-                 ["maxDist"] = 35.737483978271484,
-                 ["m"] = Enum.Material.Plastic,
-                 ["sid"] = 12,
-                 ["t"] = 0.6319174430296733,
-                 ["n"] = Vector3.new(0,0,0)
-           }
-       }
-
-      game:GetService("ReplicatedStorage").WeaponSystem.Remotes.WeaponHit:FireServer(unpack(args))
+        Trainner(_G.ReturnZones)
     end
 end
 })
